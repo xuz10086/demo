@@ -1,0 +1,52 @@
+my:
+  name: default
+
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+
+---
+#development environment
+my:
+  name: dev
+
+spring:
+  profiles: dev
+  application:
+    name: Hello-Service  # 为服务命名
+
+server:
+  port: 8181
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/, http://peer2:1112/eureka/
+#  instance:
+#    instanceId: ${spring.application.name}=${random.int}
+
+---
+#test environment
+my:
+  name: test
+
+spring:
+  profiles: test
+
+server:
+  port: 8282
+
+---
+#production environment
+my:
+  name: prod
+
+spring:
+  profiles: prod
+
+server:
+  port: 8383
+
